@@ -1,0 +1,23 @@
+service:
+  - docker
+
+stages:
+  - build
+  - test
+  - name: deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build . -t $BUILD_NAME
+        - docker tag $BUILD_NAME $DOCKER_USERNAME/$BUILD_NAME
+        - docker push $DOCKER_USERNAME/$BUILD_NAME
+    - stage: test
+      script:
+        - docker run --rm $DOCKER_USERNAME/$BUILD_NAME npm test
+    - stage: deploy
+      script:
+        - echo "Deploy to the server"
