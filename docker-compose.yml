@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  express-example:
+    build: .
+    container_name: "express-example"
+    ports:
+      - "3000:3000"
