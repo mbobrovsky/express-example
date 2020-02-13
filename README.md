@@ -156,3 +156,32 @@ function onListening() { /* ... */ }
 
 And finally you have to adjust the `config/config.js` to fit your environment.
 Once thats done, your database configuration is ready!
+
+## Docker
+To run project on docker use this command:
+```
+$ docker-compose up -d
+```
+
+## Docker registry
+
+### Configure Docker Registry
+ - Create account on https://hub.docker.com
+ - Create repository
+
+## Travis CI
+
+### Configure Travis CI
+ - Create Travis CI account
+ - Add repository
+ - Add environments
+
+### List of environments
+```
+BUILD_NAME=express-example
+DOCKER_USERNAME=username from your docker account
+DOCKER_PASSWORD=password from your docker account
+```
+
+### Run CI/CD
+To run CI/CD just push your changes to master branch
